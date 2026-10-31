@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+.libraryDisplay {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    background-color: black;
+}
+
+.bookDiv {
+    background-color: antiquewhite;
+    margin: 10px;
+    padding: 4px;
+    border: 3px solid brown;
+    border-radius: 20px;
+}
