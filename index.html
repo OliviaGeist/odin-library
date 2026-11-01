@@ -9,9 +9,38 @@
 </head>
 <body>
     <div class="container">
+        <div class="header">
+            <h1 class="pageTitle">Library</h1>
+        </div>
+        <div class="buttons">
+            <button class="newBookButton">New Book</button>
+        </div>
         <div class="libraryDisplay">
 
         </div>
     </div>
+    <dialog id="newBookDialog">
+        <form action="">
+            <h2>Add new book</h2>
+            <div>
+                <label for="newBookTitle">Title:</label>
+                <input type="text" id="newBookTitle" autocomplete="off">
+            </div>
+            <div>
+                <label for="newBookAuthor">Author:</label>
+                <input type="text" id="newBookAuthor" autocomplete="off">
+            </div>
+            <div>
+                <label for="newBookPages">Pages:</label>
+                <input type="number" id="newBookPages" autocomplete="off">
+            </div>
+            <div>
+                <label for="newBookHasRead">Read?</label>
+                <input type="checkbox" id="newBookHasRead" autocomplete="off">
+            </div>
+
+            <button id="submitAddBookDialog" type="submit">Add</button>
+        </form>
+    </dialog>
 </body>
 </html>

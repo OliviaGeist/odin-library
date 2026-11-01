@@ -2,16 +2,113 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: rgb(62, 40, 26);
+    margin: 0px;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 100px 100px 1fr;
+    align-items: center;
+}
+
+.pageTitle {
+    color: blanchedalmond;
+    text-align: center;
+    font-size: 60px;
+    text-shadow: 0px 5px 5px black;
+}
+
 .libraryDisplay {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    background-color: black;
+    background-color: rgb(48, 28, 15);
+    border-radius: 20px;
+    box-shadow:  0px 0px 40px inset rgb(0, 0, 0);
+    margin: 30px;
 }
 
 .bookDiv {
+    height: 280px;
     background-color: antiquewhite;
     margin: 10px;
-    padding: 4px;
+    padding: 8px;
     border: 3px solid brown;
     border-radius: 20px;
+    box-shadow: 0px 5px 10px black;
+}
+
+.header,
+.buttons {
+    background-color: rgb(121, 61, 17);
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    box-shadow: 0px 5px 5px black;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    width: 140px;
+    height: 50px;
+    background-color: brown;
+    color: antiquewhite;
+    font-size: 20px;
+    box-shadow: 0px 3px 3px black;
+}
+
+button:hover {
+    width: 150px;
+    height: 60px;
+    font-size: 22px;
+    border: 3px solid lightblue;
+}
+
+button:active {
+    background-color: rgb(233, 160, 160);
+    color: black;
+}
+
+dialog {
+    width: 300px;
+    height: 300px;
+    border: 5px solid darkblue;
+    border-radius: 40px;
+}
+
+dialog > form {
+    display: grid;
+    grid-template-rows: 40px repeat(4, 30px) 50px;
+    align-items: center;
+}
+
+dialog > form > div {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    justify-items: start;
+    align-items: center;
+}
+
+#submitAddBookDialog,
+dialog > form > h2 {
+    justify-self: center;
+}
+
+#submitAddBookDialog {
+    margin-top: 50px;
+}
+
+label {
+    justify-self: self-end;
+    margin-right: 3px;
+}
+
+input[type="number"] {
+    width: 70px;
 }
