@@ -9,6 +9,11 @@ const Book = function(title, author, pages, hasRead) {
     this.author = author;
     this.pages = pages;
     this.hasRead = hasRead;
+    this.toggleHasRead = function() {
+        this.hasRead = (!this.hasRead);
+        removeLibraryDisplay();
+        displayLibrary();
+    };
 };
 
 function addBookToLibrary(title, author, pages, hasRead) {
@@ -24,6 +29,10 @@ function displayLibrary() {
         bookDiv.setAttribute("class", "bookDiv");
         bookDiv.setAttribute("data-bookuuid", `${myBook.id}`);
 
+        const bookInfo = document.createElement("div");
+        const bookButtons = document.createElement("div");
+        bookButtons.setAttribute("class", "bookButtons");
+
         const bookTitle = document.createElement("h2");
         bookTitle.setAttribute("class", "bookTitle");
         const bookAuthor = document.createElement("h3");
@@ -33,19 +42,45 @@ function displayLibrary() {
         const bookHasRead = document.createElement("h4");
         bookHasRead.setAttribute("class", "bookHasRead");
 
+        const toggleHasReadButton = document.createElement("button");
+        toggleHasReadButton.setAttribute("class", "toggleHasReadButton");
+        toggleHasReadButton.setAttribute("data-bookuuid", `${myBook.id}`);
+        
+        const removeBookButton = document.createElement("button");
+        removeBookButton.setAttribute("class", "removeBookButton");
+        removeBookButton.setAttribute("data-bookuuid", `${myBook.id}`);
+
+        removeBookButton.addEventListener("click", function(event) {
+            let removeButtonUUID = event.currentTarget.getAttribute("data-bookuuid");
+            removeBook(removeButtonUUID);
+        });
+
+        toggleHasReadButton.addEventListener("click", function(event) {
+            let toggleButtonUUID = event.currentTarget.getAttribute("data-bookuuid");
+            toggleHasReadBook(toggleButtonUUID);
+        });
+
         bookTitle.textContent = `${myBook.title}`;
         bookAuthor.textContent = `By: ${myBook.author}`;
-        bookPages.textContent = ` Pages: ${myBook.pages}`;
+        bookPages.textContent = `Pages: ${myBook.pages}`;
         if (myBook.hasRead === true) {
             bookHasRead.textContent = `Read`;
         } else {
             bookHasRead.textContent =`Not read`;
         };
+        toggleHasReadButton.textContent = "Read/Unread";
+        removeBookButton.textContent = "Remove";
 
-        bookDiv.appendChild(bookTitle);
-        bookDiv.appendChild(bookAuthor);
-        bookDiv.appendChild(bookPages);
-        bookDiv.appendChild(bookHasRead);
+        bookInfo.appendChild(bookTitle);
+        bookInfo.appendChild(bookAuthor);
+        bookInfo.appendChild(bookPages);
+        bookInfo.appendChild(bookHasRead);
+
+        bookButtons.appendChild(toggleHasReadButton);
+        bookButtons.appendChild(removeBookButton);
+
+        bookDiv.appendChild(bookInfo);
+        bookDiv.appendChild(bookButtons);
 
         libraryDisplay.appendChild(bookDiv);
     };
@@ -96,3 +131,24 @@ submitAddBookButton.addEventListener("click", (event) => {
 
     newBookDialog.close();
 });
+
+function removeBook(uuid) {
+    let removedBook = myLibrary.findIndex(findRemovedBook);
+
+    function findRemovedBook(value, index, array) {
+        return value.id === uuid;
+    };
+
+    myLibrary.splice(removedBook, 1);
+
+    removeLibraryDisplay();
+    displayLibrary();
+};
+
+function toggleHasReadBook(uuid) {
+    myLibrary.find(findToggleBook).toggleHasRead();
+
+    function findToggleBook(value, index, array) {
+        return value.id === uuid;
+    };
+};

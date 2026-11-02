@@ -37,6 +37,8 @@ body {
     border: 3px solid brown;
     border-radius: 20px;
     box-shadow: 0px 5px 10px black;
+    display: grid;
+    grid-template-rows: auto 1fr;
 }
 
 .header,
@@ -57,16 +59,21 @@ button {
     border-radius: 5px;
     width: 140px;
     height: 50px;
-    background-color: brown;
+    background-color: rgb(46, 78, 92);
     color: antiquewhite;
     font-size: 20px;
     box-shadow: 0px 3px 3px black;
 }
 
-button:hover {
+.newBookButton:hover {
     width: 150px;
     height: 60px;
     font-size: 22px;
+    border: 3px solid lightblue;
+}
+
+.removeBookButton:hover,
+.toggleHasReadButton:hover {
     border: 3px solid lightblue;
 }
 
@@ -75,11 +82,39 @@ button:active {
     color: black;
 }
 
+.bookButtons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+}
+
+.toggleHasReadButton {
+    justify-self: start;
+    width: 110px;
+    height: 30px;
+    font-size: 15px;
+    background-color: rgb(46, 42, 165);
+}
+
+.removeBookButton {
+    justify-self: end;
+    width: 70px;
+    height: 30px;
+    font-size: 15px;
+    background-color: brown;
+}
+
 dialog {
     width: 300px;
     height: 300px;
     border: 5px solid darkblue;
     border-radius: 40px;
+    box-shadow: 0px 5px 10px black;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 50, 0.33);
+    box-shadow: inset 0px 0px 20px black;
 }
 
 dialog > form {
